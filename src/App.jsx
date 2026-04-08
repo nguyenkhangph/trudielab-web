@@ -8,6 +8,7 @@ import {
   Menu
 } from 'lucide-react';
 
+
 /* --- CUSTOM HOOK & COMPONENT FOR SCROLL ANIMATIONS --- */
 const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', threshold = 0.1 }) => {
   const ref = useRef(null);
@@ -57,8 +58,12 @@ const App = () => {
   const navigateTo = (page) => {
     setCurrentPage(page);
     setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Auto-scroll to top whenever currentPage changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
