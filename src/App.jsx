@@ -8,7 +8,6 @@ import {
   Menu
 } from 'lucide-react';
 
-
 /* --- CUSTOM HOOK & COMPONENT FOR SCROLL ANIMATIONS --- */
 const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', threshold = 0.1 }) => {
   const ref = useRef(null);
@@ -640,6 +639,139 @@ const ExperiencePage = () => {
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
                 <p className="font-serif italic text-base mb-4">Zero-leakage (Không lọt bất kỳ lead VIP nào), rút ngắn 40% thời gian nuôi dưỡng ra deal.</p>
                 <button onClick={() => setOpenImageGallery('bds')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        {/* Industry 4: GIÁO DỤC / DIGITAL PRODUCT (NEW) */}
+        <Reveal type="fade-up">
+          <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-3">
+              <div className="border-t border-[#0C1838] pt-4 lg:sticky lg:top-32">
+                <GraduationCap className="text-[#0C1838] w-6 h-6 mb-4" />
+                <h2 className="text-xl font-serif font-medium text-[#0C1838] mb-2">Sản Phẩm Số & Giáo Dục</h2>
+                <span className="text-[#0C1838]/50 text-[10px] font-bold uppercase tracking-widest">Định vị chuyên gia</span>
+              </div>
+            </div>
+            <div className="lg:col-span-9 bg-white p-6 sm:p-8 md:p-12 border border-[#0C1838]/5 shadow-sm hover:shadow-lg transition-shadow duration-500">
+              <p className="drop-cap text-[#0C1838]/80 text-sm leading-relaxed mb-8">
+                Rào cản lớn nhất của mô hình sản phẩm số (Sách tích xanh, Khoá học) là vận hành cấp quyền thủ công, tốn quá nhiều nhân sự CSKH và đặc biệt khó khăn trong việc thiết lập phễu bán chéo các chương trình Coaching.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-8">
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Giải pháp Công nghệ (Khang)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Omnichannel Zero-Touch: Tự động kích hoạt tài khoản trong 5 giây sau chuyển khoản.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Kiểm duyệt nội dung/bản quyền tự động bằng thuật toán AI.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Hệ thống xuất hoá đơn và upsell hoàn toàn vắng mặt con người.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Chiến lược Kinh doanh (Trúc)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Tái định vị: Từ "Bán tài liệu" sang "Bán sự chuyển đổi (Transformational)".</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Thiết lập cấu trúc Phễu: Sản phẩm mồi → Sản phẩm chủ lực → Coaching 1-1 High-Ticket.</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
+                <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
+                <p className="font-serif italic text-base mb-4">Hệ thống Scale-up đạt 2 tỷ VNĐ/3 tháng với bộ máy tinh gọn, Founder chỉ việc tập trung làm chuyên môn.</p>
+                <button onClick={() => setOpenImageGallery('edu')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        {/* Industry 5: CONTACT LENS (NEW) */}
+        <Reveal type="fade-up">
+          <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-3">
+              <div className="border-t border-[#C5A059] pt-4 lg:sticky lg:top-32">
+                <Eye className="text-[#C5A059] w-6 h-6 mb-4" />
+                <h2 className="text-xl font-serif font-medium text-[#0C1838] mb-2">Bán Lẻ Contact Lens</h2>
+                <span className="text-[#0C1838]/50 text-[10px] font-bold uppercase tracking-widest">Định vị High-Fashion</span>
+              </div>
+            </div>
+            <div className="lg:col-span-9 bg-white p-6 sm:p-8 md:p-12 border border-[#0C1838]/5 shadow-sm hover:shadow-lg transition-shadow duration-500">
+              <p className="drop-cap text-[#0C1838]/80 text-sm leading-relaxed mb-8">
+                Ngành bán lẻ bị mắc kẹt trong cuộc chiến giá rẻ. Tồn kho với hàng trăm dải độ khác nhau khiến việc quản lý thủ công trở thành thảm hoạ, và khách hàng thiếu đi sự trung thành với thương hiệu.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-8">
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Giải pháp Công nghệ (Khang)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> AI Chatbot lưu trữ thông số cận, chốt đơn lại trong 1 nốt nhạc.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Nhắn tin nhắc hết hạn lens/ưu đãi sinh nhật hoàn toàn tự động.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Dashboard theo dõi luân chuyển tồn kho.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Chiến lược Kinh doanh (Trúc)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Tái định vị thương hiệu ở phân khúc đẳng cấp, thoát ly giá rẻ.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Xây dựng Concept Cinematic và cá nhân hoá dịch vụ.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Tối ưu nguồn vốn đầu tư 3-5 Tỷ VNĐ hiệu quả.</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="bg-[#FAF9F6] border-l-2 border-[#C5A059] p-6 text-[#0C1838]">
+                <span className="font-bold text-[10px] uppercase tracking-widest text-[#C5A059] block mb-2">Kết Quả Đạt Được</span>
+                <p className="font-serif italic text-base mb-4">Tỷ lệ khách hàng quay lại mua (Retention rate) qua tin nhắn tự động đạt 65%.</p>
+                <button onClick={() => setOpenImageGallery('lens')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        {/* Industry 6: COACHING & AI AUTOMATION AGENCY (NEW) */}
+        <Reveal type="fade-up">
+          <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-3">
+              <div className="border-t border-[#0C1838] pt-4 lg:sticky lg:top-32">
+                <Target className="text-[#0C1838] w-6 h-6 mb-4" />
+                <h2 className="text-xl font-serif font-medium text-[#0C1838] mb-2">Coaching & AI Automation</h2>
+                <span className="text-[#0C1838]/50 text-[10px] font-bold uppercase tracking-widest">Mô hình Doanh nghiệp B2B</span>
+              </div>
+            </div>
+            <div className="lg:col-span-9 bg-white p-6 sm:p-8 md:p-12 border border-[#0C1838]/5 shadow-sm hover:shadow-lg transition-shadow duration-500">
+              <p className="drop-cap text-[#0C1838]/80 text-sm leading-relaxed mb-8">
+                Đối với các chuyên gia Coach và Agency B2B, bài toán khó nhất là chứng minh năng lực thực chiến và đóng gói kiến thức thành các dịch vụ High-Ticket. Sự phụ thuộc vào sức người trong việc tư vấn chiến lược khiến việc mở rộng quy mô (scale-up) gặp nút thắt lớn.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-8">
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Giải pháp Công nghệ (Khang)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Marketing & Sales System: Tự động hoá chiến dịch Ads đa kênh dựa trên Data-driven SEO.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> AI High-Ticket Closer: Luồng Voicebot/Chatbot chuyên sâu qualify khách VIP, tự động book lịch hẹn.</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Ma trận CRO: Tối ưu tỷ lệ chuyển đổi trên từng điểm chạm của Landing Page.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-serif font-medium text-[#0C1838] text-base mb-4 border-b border-[#0C1838]/10 pb-2">Chiến lược Kinh doanh (Trúc)</h3>
+                  <ul className="space-y-4 text-xs text-[#0C1838]/70 font-light list-none leading-relaxed">
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Thiết kế Phễu Bán Hàng: Đóng gói kiến thức thành các sản phẩm trị giá cao (High-Ticket).</li>
+                    <li className="flex gap-3 hover:text-[#0C1838] transition-colors"><span className="text-[#C5A059] mt-0.5">→</span> Định vị Master Coach: Xây dựng thương hiệu cá nhân kết hợp sức mạnh AI Automation.</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
+                <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
+                <p className="font-serif italic text-base mb-4">Hoàn thiện mô hình tự động hoá quy trình chốt sales B2B, tối ưu chi phí vận hành và thiết lập chuẩn mực dịch vụ tư vấn cao cấp đạt mốc 2 Tỷ VNĐ/ 3 tháng.</p>
+                <button onClick={() => setOpenImageGallery('coaching')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
                   Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
