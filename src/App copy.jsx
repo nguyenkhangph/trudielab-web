@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, Target, 
-  BarChart, CheckCircle2, 
-  Building2, Wine, Stethoscope, GraduationCap, 
-  Eye, X, Play, Hexagon, Layers,
-  Menu, Terminal, Cpu, Database, Network
+  BarChart, Zap, CheckCircle2, 
+  ChevronRight, Building2, Briefcase, 
+  Wine, Stethoscope, GraduationCap, 
+  Eye, X, Play, Activity, Hexagon, Layers,
+  Menu
 } from 'lucide-react';
-
-import imgBanner from './assets/images/banner.jpg';
-import imgKhang from './assets/images/khang.jpg';
-// import imgTruc from './assets/images/truc.jpg';
 
 /* --- CUSTOM HOOK & COMPONENT FOR SCROLL ANIMATIONS --- */
 const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', threshold = 0.1 }) => {
@@ -21,7 +18,7 @@ const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', thresho
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
+          observer.disconnect(); // Only animate once
         }
       },
       { threshold: threshold }
@@ -56,24 +53,24 @@ const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Chuyển trang
+  // Smooth scroll logic
   const navigateTo = (page) => {
     setCurrentPage(page);
     setIsMobileMenuOpen(false);
   };
 
-  // Cuộn lên đầu khi đổi trang
+  // Auto-scroll to top whenever currentPage changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
-  // Khóa cuộn màn hình khi mở Modal
+  // Lock body scroll when modal is open
   useEffect(() => {
     if (activeModal) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [activeModal]);
 
-  // Hiệu ứng Navbar
+  // Navbar blur effect on scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -85,10 +82,9 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#0C1838] font-sans selection:bg-[#C5A059] selection:text-white">
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
         .drop-cap:first-letter {
           float: left;
           font-size: 3.2rem;
@@ -101,16 +97,6 @@ const App = () => {
           font-weight: 600;
         }
         .text-balance { text-wrap: balance; }
-        
-        /* Hiệu ứng luồng dữ liệu cho Dashboard */
-        @keyframes flow {
-          0% { stroke-dashoffset: 24; }
-          100% { stroke-dashoffset: 0; }
-        }
-        .animate-flow {
-          stroke-dasharray: 4 4;
-          animation: flow 1s linear infinite;
-        }
       `}} />
 
       {/* Navbar */}
@@ -192,7 +178,7 @@ const App = () => {
   );
 };
 
-/* --- ABOUT PAGE --- */
+/* --- ABOUT PAGE (GIỚI THIỆU) --- */
 const AboutPage = ({ navigateTo, setActiveModal }) => {
   return (
     <div className="animate-in fade-in duration-1000">
@@ -234,13 +220,13 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
           
           <div className="lg:col-span-5 relative hidden lg:block">
             <Reveal type="scale" delay={400}>
-              <div className="aspect-[4/5] w-full p-3 relative shadow-2xl bg-white">
-                <div className="w-full h-full border border-[#0C1838]/20 overflow-hidden">
-                  <img 
-                    src={imgBanner} 
-                    alt="TrudieLab Architecture" 
-                    className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
-                  />
+              <div className="aspect-[4/5] w-full bg-[#E5E0D8] p-3 relative shadow-2xl">
+                <div className="w-full h-full border border-[#0C1838]/20 flex flex-col items-center justify-center text-center p-8 relative overflow-hidden group">
+                   <div className="absolute inset-0 bg-[#0C1838]/5 group-hover:bg-[#0C1838]/10 transition-colors duration-500"></div>
+                   <div className="w-16 h-16 border border-[#0C1838]/20 rounded-full flex items-center justify-center mb-6 z-10 animate-pulse">
+                     <Hexagon className="text-[#0C1838]/40 w-6 h-6 stroke-1" />
+                   </div>
+                   <p className="font-serif italic text-[#0C1838]/50 text-sm z-10">[ Conceptual Image: The intersection of human strategy and neural networks ]</p>
                 </div>
               </div>
             </Reveal>
@@ -248,7 +234,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
         </div>
       </section>
 
-      {/* 2. Triết lý Vận Hành */}
+      {/* 2. Triết lý Vận Hành (The Core Philosophy) */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           <Reveal type="fade-right">
@@ -272,24 +258,24 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
         </div>
       </section>
 
-      {/* 3. Phương Pháp Luận */}
-      <section className="bg-[#FAF9F6] text-[#0C1838] py-16 md:py-24 border-b border-[#0C1838]/10">
+      {/* 3. Phương Pháp Luận (The Protocol) */}
+      <section className="bg-[#0C1838] text-[#FAF9F6] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal type="fade-up">
-            <div className="mb-12 md:mb-16 md:flex justify-between items-end border-b border-[#0C1838]/10 pb-8">
+            <div className="mb-12 md:mb-16 md:flex justify-between items-end border-b border-white/10 pb-8">
               <div className="max-w-2xl">
                  <span className="text-[#C5A059] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 block">Phương pháp luận</span>
                  <h2 className="text-3xl md:text-4xl font-serif mb-4">Giao thức Tái cấu trúc</h2>
-                 <p className="text-[#0C1838]/60 font-light text-sm">Chúng tôi không cấp phát phần mềm. Chúng tôi can thiệp vào DNA của doanh nghiệp để thiết lập lại cách thức tạo ra doanh thu.</p>
+                 <p className="text-white/60 font-light text-sm">Chúng tôi không cấp phát phần mềm. Chúng tôi can thiệp vào DNA của doanh nghiệp để thiết lập lại cách thức tạo ra doanh thu.</p>
               </div>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-10 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-[#0C1838]/10">
+          <div className="grid md:grid-cols-3 gap-10 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10">
             <Reveal type="fade-up" delay={0} className="pt-8 md:pt-0 md:pr-12">
               <span className="text-[#C5A059] font-serif italic text-2xl mb-4 block hover:-translate-y-1 transition-transform cursor-default">01.</span>
               <h3 className="text-xl font-serif font-medium mb-4">Thẩm Định Mạch Máu</h3>
-              <p className="text-[#0C1838]/60 text-sm font-light leading-relaxed">
+              <p className="text-white/60 text-sm font-light leading-relaxed">
                 Phân tích toàn diện phễu khách hàng hiện tại. Xác định các điểm nghẽn (bottlenecks) đang gây rò rỉ dòng tiền, và những quy trình lặp lại đang tiêu tốn sức lao động con người một cách vô nghĩa.
               </p>
             </Reveal>
@@ -297,71 +283,23 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
             <Reveal type="fade-up" delay={150} className="pt-8 md:pt-0 md:px-12">
               <span className="text-[#C5A059] font-serif italic text-2xl mb-4 block hover:-translate-y-1 transition-transform cursor-default">02.</span>
               <h3 className="text-xl font-serif font-medium mb-4">Kiến Trúc Hệ Sinh Thái</h3>
-              <p className="text-[#0C1838]/60 text-sm font-light leading-relaxed">
-                Thiết kế các luồng AI Agent (N8N) rập khuôn theo đúng đặc thù ngành nghề của bạn. Từ khâu cào dữ liệu, phân loại Lead (Scoring) cho đến kịch bản đàm phán chốt sale High-Ticket.
+              <p className="text-white/60 text-sm font-light leading-relaxed">
+                Khang và Trúc trực tiếp thiết kế các luồng AI Agent (N8N) rập khuôn theo đúng đặc thù ngành nghề của bạn. Từ khâu cào dữ liệu, phân loại Lead (Scoring) cho đến kịch bản đàm phán chốt sale High-Ticket.
               </p>
             </Reveal>
 
             <Reveal type="fade-up" delay={300} className="pt-8 md:pt-0 md:pl-12">
               <span className="text-[#C5A059] font-serif italic text-2xl mb-4 block hover:-translate-y-1 transition-transform cursor-default">03.</span>
               <h3 className="text-xl font-serif font-medium mb-4">Kích Hoạt Tĩnh Lặng</h3>
-              <p className="text-[#0C1838]/60 text-sm font-light leading-relaxed">
-                Triển khai hệ thống ngầm vào doanh nghiệp. Cỗ máy tự động thu thập data, nuôi dưỡng và chốt lịch hẹn. Founder chỉ việc nhìn vào bảng điều khiển (Dashboard) và tiếp nhận các kết quả đã tinh lọc.
+              <p className="text-white/60 text-sm font-light leading-relaxed">
+                Triển khai hệ thống ngầm vào doanh nghiệp. Cỗ máy bắt đầu tự động thu thập data, nuôi dưỡng và chốt lịch hẹn. Founder chỉ việc nhìn vào bảng điều khiển (Dashboard) và tiếp nhận các kết quả đã được tinh lọc.
               </p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* 4. ĐỘI NGŨ KIẾN TẠO - THE FOUNDERS */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 border-b border-[#0C1838]/10 overflow-hidden">
-        <Reveal type="fade-up" className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <span className="text-[#C5A059] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 block">Đội ngũ kiến tạo</span>
-          <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#0C1838]">Hai Bán Cầu Não Của Hệ Thống</h2>
-        </Reveal>
-
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
-          <Reveal type="fade-right" delay={0}>
-            <div className="group">
-              <div className="aspect-[3/4] overflow-hidden mb-6 md:mb-8 border border-[#0C1838]/10 relative bg-[#E5E0D8]">
-                <img 
-                  src={imgKhang}
-                  alt="Khang - System Architect" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
-                />
-              </div>
-              <div className="text-center md:text-left">
-                 <h3 className="text-2xl md:text-3xl font-serif font-medium text-[#0C1838] mb-2">Nguyên Khang</h3>
-                 <p className="text-[#C5A059] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">System Architect / IT Base</p>
-                 <p className="text-[#0C1838]/70 text-sm font-light leading-relaxed">
-                   Kỹ sư Khoa học máy tính, Kiến trúc sư công nghệ. Người đứng sau những luồng tự động hoá đa tầng phức tạp, kết nối các mảnh ghép AI rời rạc thành một cỗ máy in tiền tự động, vận hành 24/7 với độ chính xác tuyệt đối. Khang mang đến năng lực lõi về hệ thống (System Architecture) và xử lý dữ liệu lớn (Data-driven).
-                 </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal type="fade-left" delay={200}>
-            <div className="group md:mt-16">
-              <div className="aspect-[3/4] overflow-hidden mb-6 md:mb-8 border border-[#0C1838]/10 relative bg-[#E5E0D8]">
-                <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop" 
-                  alt="Trudie - CEO" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
-                />
-              </div>
-              <div className="text-center md:text-left">
-                 <h3 className="text-2xl md:text-3xl font-serif font-medium text-[#0C1838] mb-2">Trudie (Trúc)</h3>
-                 <p className="text-[#C5A059] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">CEO / Business Base</p>
-                 <p className="text-[#0C1838]/70 text-sm font-light leading-relaxed">
-                   Chiến lược gia dày dặn kinh nghiệm. Trúc mang tư duy quản trị sắc bén, năng lực phân bổ nguồn vốn và định hình phong cách thương hiệu Cinematic & High-fashion. Chuyên gia định vị doanh nghiệp ở phân khúc cao cấp, đóng gói sản phẩm High-Ticket và thiết lập ma trận phễu chốt sales đỉnh cao.
-                 </p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 5. Kiến trúc tự động hoá */}
+      {/* 4. Kiến trúc tự động hoá (The Solutions Modals) */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 border-b border-[#0C1838]/10">
         <Reveal type="fade-up" className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="text-[#C5A059] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 block">Vũ khí công nghệ</span>
@@ -410,7 +348,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
         </div>
       </section>
 
-      {/* 6. Chân dung đối tác */}
+      {/* 5. Chân dung đối tác (Exclusivity) */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 overflow-hidden">
          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
             <Reveal type="fade-right" className="md:col-span-5 relative order-2 md:order-1">
@@ -465,7 +403,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
          </div>
       </section>
 
-      {/* Quote */}
+      {/* Quote / Founders */}
       <section className="bg-[#E5E0D8] text-[#0C1838] py-16 md:py-24 text-center border-t border-[#0C1838]/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#C5A059] via-transparent to-transparent"></div>
         <Reveal type="scale" className="max-w-3xl mx-auto px-6 relative z-10">
@@ -480,7 +418,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
   );
 };
 
-/* --- EDITORIAL MODALS --- */
+/* --- EDITORIAL MODALS (Giữ nguyên) --- */
 const SolutionModal = ({ modalType, closeModal }) => {
   const content = {
     core: {
@@ -559,6 +497,7 @@ const SolutionModal = ({ modalType, closeModal }) => {
 
 /* --- EXPERIENCE PAGE --- */
 const ExperiencePage = () => {
+  const [openImageGallery, setOpenImageGallery] = useState(null);
 
   return (
     <div className="animate-in fade-in duration-1000 max-w-7xl mx-auto px-6 lg:px-8">
@@ -610,7 +549,10 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#C5A059] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#C5A059] block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Tăng 30% tỷ lệ quay lại, chốt mượt mà các bill trên 50.000.000 VNĐ hoàn toàn qua tin nhắn tự động.</p>
+                <p className="font-serif italic text-base mb-4">Tăng 30% tỷ lệ quay lại, chốt mượt mà các bill trên 50.000.000 VNĐ hoàn toàn qua tin nhắn tự động.</p>
+                <button onClick={() => setOpenImageGallery('wine')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
@@ -651,7 +593,10 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Giảm 80% thời gian sale cày data rác, x3 tỷ lệ khách hàng VIP có mặt tại cơ sở thực tế (Show-up rate).</p>
+                <p className="font-serif italic text-base mb-4">Giảm 80% thời gian sale cày data rác, x3 tỷ lệ khách hàng VIP có mặt tại cơ sở thực tế (Show-up rate).</p>
+                <button onClick={() => setOpenImageGallery('spa')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
@@ -692,13 +637,16 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Zero-leakage (Không lọt bất kỳ lead VIP nào), rút ngắn 40% thời gian nuôi dưỡng ra deal.</p>
+                <p className="font-serif italic text-base mb-4">Zero-leakage (Không lọt bất kỳ lead VIP nào), rút ngắn 40% thời gian nuôi dưỡng ra deal.</p>
+                <button onClick={() => setOpenImageGallery('bds')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
         </Reveal>
 
-        {/* Industry 4: GIÁO DỤC / DIGITAL PRODUCT */}
+        {/* Industry 4: GIÁO DỤC / DIGITAL PRODUCT (NEW) */}
         <Reveal type="fade-up">
           <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-3">
@@ -733,13 +681,16 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Hệ thống Scale-up đạt 2 tỷ VNĐ/3 tháng với bộ máy tinh gọn, Founder chỉ việc tập trung làm chuyên môn.</p>
+                <p className="font-serif italic text-base mb-4">Hệ thống Scale-up đạt 2 tỷ VNĐ/3 tháng với bộ máy tinh gọn, Founder chỉ việc tập trung làm chuyên môn.</p>
+                <button onClick={() => setOpenImageGallery('edu')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
         </Reveal>
 
-        {/* Industry 5: CONTACT LENS */}
+        {/* Industry 5: CONTACT LENS (NEW) */}
         <Reveal type="fade-up">
           <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-3">
@@ -775,13 +726,16 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#C5A059] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#C5A059] block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Tỷ lệ khách hàng quay lại mua (Retention rate) qua tin nhắn tự động đạt 65%.</p>
+                <p className="font-serif italic text-base mb-4">Tỷ lệ khách hàng quay lại mua (Retention rate) qua tin nhắn tự động đạt 65%.</p>
+                <button onClick={() => setOpenImageGallery('lens')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
         </Reveal>
 
-        {/* Industry 6: COACHING & AI AUTOMATION AGENCY */}
+        {/* Industry 6: COACHING & AI AUTOMATION AGENCY (NEW) */}
         <Reveal type="fade-up">
           <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-3">
@@ -816,13 +770,56 @@ const ExperiencePage = () => {
               
               <div className="bg-[#FAF9F6] border-l-2 border-[#0C1838] p-6 text-[#0C1838]">
                 <span className="font-bold text-[10px] uppercase tracking-widest text-[#0C1838]/50 block mb-2">Kết Quả Đạt Được</span>
-                <p className="font-serif italic text-base mb-0">Hoàn thiện mô hình tự động hoá quy trình chốt sales B2B, tối ưu chi phí vận hành và thiết lập chuẩn mực dịch vụ tư vấn cao cấp đạt mốc 2 Tỷ VNĐ/ 3 tháng.</p>
+                <p className="font-serif italic text-base mb-4">Hoàn thiện mô hình tự động hoá quy trình chốt sales B2B, tối ưu chi phí vận hành và thiết lập chuẩn mực dịch vụ tư vấn cao cấp đạt mốc 2 Tỷ VNĐ/ 3 tháng.</p>
+                <button onClick={() => setOpenImageGallery('coaching')} className="group text-[10px] font-bold uppercase tracking-widest text-[#0C1838] border border-[#0C1838]/20 px-4 py-2 hover:bg-[#0C1838] hover:text-white transition-all flex items-center gap-2 w-fit">
+                  Xem Hình Ảnh Minh Hoạ <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </article>
         </Reveal>
 
       </div>
+
+      {/* Modal: Image Gallery */}
+      {openImageGallery && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#0C1838]/80 backdrop-blur-md animate-in fade-in duration-300" onClick={() => setOpenImageGallery(null)}>
+          <div className="relative bg-[#FAF9F6] w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl border border-[#0C1838]/10 animate-in zoom-in-95 duration-300" onClick={e => e.stopPropagation()}>
+            
+            <div className="sticky top-0 bg-[#FAF9F6]/95 backdrop-blur border-b border-[#0C1838]/10 p-6 flex justify-between items-center z-10">
+              <div>
+                <h3 className="text-xl font-serif font-medium text-[#0C1838]">Tài Liệu Minh Hoạ Hệ Thống</h3>
+                <p className="text-[#0C1838]/60 text-xs font-light">Không gian dành cho IT cập nhật hình ảnh thực tế</p>
+              </div>
+              <button onClick={() => setOpenImageGallery(null)} className="p-2 text-[#0C1838]/50 hover:text-[#0C1838] transition-all bg-white border border-[#0C1838]/10 rounded-full hover:rotate-90">
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="p-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                   <div className="aspect-[4/3] bg-[#E5E0D8] border border-dashed border-[#0C1838]/20 flex flex-col items-center justify-center text-center p-6 relative group cursor-pointer hover:border-[#C5A059] transition-colors">
+                      <Play className="text-[#0C1838]/20 w-8 h-8 mb-3 group-hover:text-[#C5A059] transition-colors group-hover:scale-110 duration-300" />
+                      <span className="font-mono text-[10px] text-[#0C1838]/50 group-hover:text-[#0C1838] transition-colors">[ IT: Chèn thẻ &lt;img&gt; chứa Flow N8N tại đây ]</span>
+                   </div>
+                   <p className="font-serif font-medium text-[#0C1838] text-center text-sm">Sơ đồ luồng tự động hoá (N8N Flow)</p>
+                </div>
+                
+                <div className="space-y-3">
+                   <div className="aspect-[4/3] bg-[#E5E0D8] border border-dashed border-[#0C1838]/20 flex flex-col items-center justify-center text-center p-6 relative group cursor-pointer hover:border-[#C5A059] transition-colors">
+                      <BarChart className="text-[#0C1838]/20 w-8 h-8 mb-3 group-hover:text-[#C5A059] transition-colors group-hover:scale-110 duration-300" />
+                      <span className="font-mono text-[10px] text-[#0C1838]/50 group-hover:text-[#0C1838] transition-colors">[ IT: Chèn thẻ &lt;img&gt; chứa UI/Báo cáo tại đây ]</span>
+                   </div>
+                   <p className="font-serif font-medium text-[#0C1838] text-center text-sm">Giao diện Dashboard / Báo cáo ROI</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
@@ -843,43 +840,43 @@ const ContactPage = () => {
         <div className="bg-white border border-[#0C1838]/10 p-6 sm:p-10 md:p-14 shadow-xl relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-[#C5A059]"></div>
           
-          <form action="DÁN_LINK_FORMSPREE_CỦA_BẠN_VÀO_ĐÂY" method="POST" className="space-y-6 md:space-y-8">
+          <form className="space-y-6 md:space-y-8" onSubmit={(e) => e.preventDefault()}>
             
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               <div className="space-y-2 group">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-[#0C1838]/60 group-focus-within:text-[#C5A059] transition-colors">Họ tên / Chức vụ <span className="text-[#C5A059]">*</span></label>
-                <input type="text" name="Họ Tên" required className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="VD: Nguyễn Văn A - CEO" />
+                <input type="text" className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="VD: Nguyễn Văn A - CEO" />
               </div>
               <div className="space-y-2 group">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-[#0C1838]/60 group-focus-within:text-[#C5A059] transition-colors">Email Doanh Nghiệp <span className="text-[#C5A059]">*</span></label>
-                <input type="email" name="Email" required className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="ceo@company.com" />
+                <input type="email" className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="ceo@company.com" />
               </div>
             </div>
 
             <div className="space-y-2 group">
               <label className="text-[10px] font-bold uppercase tracking-widest text-[#0C1838]/60 group-focus-within:text-[#C5A059] transition-colors">Lĩnh vực hoạt động</label>
-              <input type="text" name="Lĩnh Vực" className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="VD: Bán lẻ, BĐS, F&B, Coaching..." />
+              <input type="text" className="w-full bg-transparent border-b border-[#0C1838]/20 px-0 py-2 text-[#0C1838] focus:outline-none focus:border-[#C5A059] transition-colors rounded-none font-serif text-base" placeholder="VD: Bán lẻ, BĐS, F&B, Coaching..." />
             </div>
 
             <div className="space-y-2 group">
               <label className="text-[10px] font-bold uppercase tracking-widest text-[#0C1838]/60 mb-2 block group-focus-within:text-[#C5A059] transition-colors">Vấn đề cốt lõi cần giải quyết <span className="text-[#C5A059]">*</span></label>
               <div className="relative border border-[#0C1838]/20 p-1 bg-[#FAF9F6] focus-within:border-[#C5A059] transition-colors">
-                <select name="Vấn Đề" required className="w-full bg-transparent px-4 py-3 text-[#0C1838] focus:outline-none appearance-none font-serif text-sm cursor-pointer">
+                <select className="w-full bg-transparent px-4 py-3 text-[#0C1838] focus:outline-none appearance-none font-serif text-sm cursor-pointer">
                   <option value="">-- Lựa chọn bài toán vận hành của bạn --</option>
                   <optgroup label="TÌM KIẾM & PHÂN LOẠI KHÁCH HÀNG" className="font-sans font-bold text-xs">
-                    <option value="Data rác" className="font-serif">Data chạy Ads nhiều nhưng toàn rác, khó chốt.</option>
-                    <option value="Chi phí VIP cao" className="font-serif">Chi phí lấy một khách VIP quá cao.</option>
-                    <option value="CRO thấp" className="font-serif">Tỷ lệ chuyển đổi (CRO) trên Website quá thấp.</option>
+                    <option value="mkt_1" className="font-serif">Data chạy Ads nhiều nhưng toàn rác, khó chốt.</option>
+                    <option value="mkt_2" className="font-serif">Chi phí lấy một khách VIP quá cao.</option>
+                    <option value="mkt_5" className="font-serif">Tỷ lệ chuyển đổi (CRO) trên Website quá thấp.</option>
                   </optgroup>
                   <optgroup label="QUY TRÌNH CHỐT ĐƠN & SALE" className="font-sans font-bold text-xs">
-                    <option value="Sale mất thời gian" className="font-serif">Sale tốn thời gian trả lời những câu lặp lại.</option>
-                    <option value="Sale thiếu kỹ năng" className="font-serif">Khó chốt các hợp đồng High-Ticket vì sale thiếu kỹ năng.</option>
-                    <option value="Rớt khách quên Follow-up" className="font-serif">Rơi rớt khách vì sale quên Follow-up.</option>
+                    <option value="sale_1" className="font-serif">Sale tốn thời gian trả lời những câu lặp lại.</option>
+                    <option value="sale_2" className="font-serif">Khó chốt các hợp đồng High-Ticket vì sale thiếu kỹ năng.</option>
+                    <option value="sale_3" className="font-serif">Rơi rớt khách vì sale quên Follow-up.</option>
                   </optgroup>
                   <optgroup label="CHIẾN LƯỢC & QUẢN TRỊ (CEO)" className="font-sans font-bold text-xs">
-                    <option value="Hệ thống rời rạc" className="font-serif">Hệ thống rời rạc, không đồng bộ dữ liệu.</option>
-                    <option value="Founder làm thợ" className="font-serif">Founder đang làm thợ, thiếu thời gian hoạch định chiến lược.</option>
-                    <option value="Sợ vỡ vận hành" className="font-serif">Scale-up doanh thu nhưng sợ vỡ quy trình vận hành.</option>
+                    <option value="ceo_1" className="font-serif">Hệ thống rời rạc, không đồng bộ dữ liệu.</option>
+                    <option value="ceo_2" className="font-serif">Founder đang làm thợ, thiếu thời gian hoạch định chiến lược.</option>
+                    <option value="ceo_3" className="font-serif">Scale-up doanh thu nhưng sợ vỡ quy trình vận hành.</option>
                   </optgroup>
                 </select>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#C5A059] text-xs">▼</div>
@@ -890,19 +887,19 @@ const ContactPage = () => {
               <label className="text-[10px] font-bold uppercase tracking-widest text-[#0C1838]/60 block mb-2">Quy mô đầu tư dự kiến</label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <label className="cursor-pointer">
-                  <input type="radio" name="Ngân Sách" value="< 50 Triệu" className="peer sr-only" />
+                  <input type="radio" name="budget" className="peer sr-only" />
                   <div className="text-center p-3 border border-[#0C1838]/20 text-[#0C1838]/70 font-serif text-sm peer-checked:bg-[#0C1838] peer-checked:border-[#0C1838] peer-checked:text-white transition-all hover:bg-[#0C1838]/5">
                     &lt; 50 Triệu
                   </div>
                 </label>
                 <label className="cursor-pointer">
-                  <input type="radio" name="Ngân Sách" value="50 - 200 Triệu" className="peer sr-only" />
+                  <input type="radio" name="budget" className="peer sr-only" />
                   <div className="text-center p-3 border border-[#0C1838]/20 text-[#0C1838]/70 font-serif text-sm peer-checked:bg-[#0C1838] peer-checked:border-[#0C1838] peer-checked:text-white transition-all hover:bg-[#0C1838]/5">
                     50 - 200 Triệu
                   </div>
                 </label>
                 <label className="cursor-pointer relative">
-                  <input type="radio" name="Ngân Sách" value="> 200 Triệu" className="peer sr-only" />
+                  <input type="radio" name="budget" className="peer sr-only" />
                   <div className="text-center p-3 border border-[#0C1838]/20 text-[#0C1838]/70 font-serif text-sm peer-checked:bg-[#0C1838] peer-checked:border-[#0C1838] peer-checked:text-white transition-all hover:bg-[#0C1838]/5">
                     &gt; 200 Triệu
                   </div>
@@ -911,7 +908,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            <button type="submit" className="w-full bg-[#0C1838] text-white text-xs font-bold uppercase tracking-widest py-4 mt-6 md:mt-8 hover:bg-[#C5A059] transition-all flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl hover:-translate-y-1">
+            <button className="w-full bg-[#0C1838] text-white text-xs font-bold uppercase tracking-widest py-4 mt-6 md:mt-8 hover:bg-[#C5A059] transition-all flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl hover:-translate-y-1">
               Gửi Yêu Cầu Đánh Giá <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </button>
             

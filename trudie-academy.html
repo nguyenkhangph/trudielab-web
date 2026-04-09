@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trudie Academy | Cỗ Máy Tự Do Của Kiến Trúc Sư Vận Hành</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAF9;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+                max-height: 500px;
+            }
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8A2A 100%);
+        }
+        .gold-text {
+            color: #D4AF37;
+        }
+        .charcoal-bg {
+            background-color: #1A1A1A;
+        }
+        .modal-overlay {
+            background-color: rgba(26, 26, 26, 0.95);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dropcap::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #D4AF37;
+            float: left;
+            line-height: 1;
+            margin-right: 0.15em;
+            margin-top: -0.1em;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#D4AF37] selection:text-white">
+
+<!-- Application Structure Plan: Gritty, realistic High-Ticket Sales Page. Focused on raw pain points (SME cash flow, tech exhaustion, agency traps). Modal updated to collect Email & Company Size for Tripwire strategy. -->
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-6 bg-[#FAFAF9]/95 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 border-2 border-[#1A1A1A] flex items-center justify-center text-[#1A1A1A] font-serif text-xl font-bold">T</div>
+                <span class="text-xl font-serif tracking-[0.3em] font-bold text-[#1A1A1A] hidden sm:block">TRUDIE</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Zalo</a>
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Cộng Đồng</a>
+                </div>
+                <button onclick="triggerModal('Touchpoint 1: Navbar')" class="gold-gradient text-white px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:opacity-90 transition-opacity shadow-lg">
+                    Tải Blueprint 100M ✦
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-40 pb-20 px-6 min-h-screen flex items-center border-b border-gray-200">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10 reveal active">
+                <div class="inline-block border border-[#1A1A1A] text-[#1A1A1A] px-4 py-1 text-[10px] font-bold tracking-[0.3em] uppercase mb-8">
+                    Sự Thật Trần Trụi
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] mb-8 text-[#1A1A1A]">
+                    Bạn đang làm chủ,<br>
+                    <span class="italic text-[#D4AF37]">hay đang làm thợ <br>cho chính mình?</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-10 max-w-xl font-light leading-relaxed">
+                    Bạn khởi nghiệp để mua lại sự tự do, nhưng giờ đây chiếc điện thoại lại trở thành chiếc còng tay. Doanh thu hàng tỷ đồng không che giấu được sự thật: Bạn không dám tắt máy đi du lịch 1 ngày, ám ảnh vì tin nhắn khách lúc 2h sáng, và kiệt sức vì làm "bảo mẫu" cho chính nhân sự của mình.<br><br>
+                    <strong class="text-[#1A1A1A] font-semibold">Nếu bạn dừng lại, hệ thống lập tức sụp đổ. Bạn không phải là một Founder. Bạn đang là "nô lệ cao cấp" cho chính doanh nghiệp mình tạo ra.</strong>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="triggerModal('Touchpoint 2: Hero Section')" class="charcoal-bg text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors shadow-xl">
+                        Cởi Trói Vận Hành ➤
+                    </button>
+                    <a href="#the-ugly-truth" class="flex items-center justify-center px-8 py-5 text-xs font-bold uppercase tracking-[0.2em] text-[#1A1A1A] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-colors">
+                        Đọc Sự Thật
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden lg:block h-full min-h-[600px] reveal active">
+                <div class="absolute inset-0 charcoal-bg flex items-center justify-center shadow-2xl p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
+                    <div class="text-center relative z-10">
+                        <div class="text-[80px] text-[#D4AF37] mb-6">♕</div>
+                        <p class="font-serif text-white text-3xl italic leading-snug">"Chức danh CEO có ý nghĩa gì khi bạn đang làm ôsin 24/7 cho chính nhân viên và khách hàng của mình? Đừng gọi đó là đam mê, đó là một án tù tự nguyện."</p>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] mt-8 block font-bold leading-relaxed">DÀNH CHO NHỮNG FOUNDER ĐANG LẤY MÁU, TÀI SẢN VÀ THANH XUÂN ĐỂ BÙ ĐẮP CHO MỘT HỆ THỐNG VẬN HÀNH RÁCH NÁT.</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 w-48 h-48 border-l-2 border-b-2 border-[#1A1A1A]"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE COLD WATER: IMPOSTER SYNDROME (NEW SECTION) -->
+    <section class="py-32 px-6 bg-white relative overflow-hidden border-b border-gray-200">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="text-4xl md:text-5xl font-serif text-[#1A1A1A] mb-10 leading-tight">
+                Sự mặc cảm tột cùng được giấu kín <br>
+                <span class="italic text-gray-400">dưới lớp vỏ bọc "Người Từng Có Thành Tựu".</span>
+            </h2>
+            
+            <div class="space-y-8 text-lg text-gray-600 font-light leading-relaxed">
+                <p>
+                    Hãy thành thật với nhau. Sự mệt mỏi thể xác không phải là thứ tàn phá bạn. Thứ đang ăn mòn bạn mỗi đêm là <strong class="text-[#1A1A1A]">sự hoài nghi về chính năng lực của bản thân mình.</strong>
+                </p>
+                <p>
+                    Bạn đã từng chiến thắng ở quá khứ. Bạn có trong tay một mô hình Offline kiếm tiền ổn định. Bạn được nhân viên gọi là "Sếp", được đối tác nể trọng. Nhưng ngay khoảnh khắc cơn bão AI và Digital ập đến, sâu thẳm bên trong, bạn biết mình đang <strong class="text-[#1A1A1A]">trắng tay về mặt tư duy.</strong>
+                </p>
+                <div class="p-8 border-l-4 border-[#D4AF37] bg-[#FAFAF9] my-10">
+                    <p class="font-serif italic text-xl text-[#1A1A1A]">
+                        "Bạn giống như một người đang chới với giữa biển khơi. Trên bờ, mọi người vẫn nghĩ bạn đang bơi rất giỏi. Chỉ có bạn biết, mình đang đạp nước điên cuồng ở dưới chỉ để không bị chìm."
+                    </p>
+                </div>
+                <p>
+                    Bạn vung tiền thuê Agency chạy Ads, bạn đuổi việc nhân sự cũ tuyển người mới, bạn điên cuồng lưu lại hàng trăm video "dạy làm AI" trên TikTok... Không phải vì bạn tin nó hiệu quả. Bạn làm vậy chỉ để <strong class="text-[#1A1A1A]">đánh lừa bản thân rằng mình "vẫn đang nỗ lực", vẫn đang làm một cái gì đó.</strong>
+                </p>
+                <p>
+                    Nhưng khi tắt máy tính, đối diện với 4 bức tường, cái cảm giác bất lực ùa về. Những nỗ lực không thấy đích đến. Bạn tự hỏi: <em>"Phải chăng những thành công trước kia của mình chỉ là do thời thế may mắn? Phải chăng mình đã thực sự hết thời?"</em>.
+                </p>
+                <p>
+                    Đó không phải là lỗi của bạn. Bạn chỉ đang dùng tư duy của một "người thợ hàn giỏi" để cố gắng lắp ráp một "cỗ máy lượng tử". Bạn đang thiếu một bản thiết kế kiến trúc.
+                </p>
+            </div>
+            
+            <div class="mt-16 text-center md:text-left">
+                <button onclick="triggerModal('Touchpoint 2.5: Gáo Nước Lạnh')" class="inline-block border-b-2 border-[#1A1A1A] text-[#1A1A1A] pb-2 text-xs font-bold uppercase tracking-[0.2em] hover:text-[#D4AF37] hover:border-[#D4AF37] transition-colors">
+                    Tìm lại sự tự tin của bạn ✦
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 KHOẢNH KHẮC ĐỜI THƯỜNG -->
+    <section class="py-24 px-6 bg-[#151515] relative overflow-hidden border-b border-[#D4AF37]/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] mb-4 font-bold">The Reality Check</p>
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">Bạn có thấy mình <br/><span class="italic text-gray-500">trong những khoảnh khắc này?</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">01.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">2h sáng, CEO nhìn chằm chằm vào hóa đơn 200 triệu tiền hình ảnh, studio, model, website "chuẩn SEO" vừa chi trong 1 tuần trước, nhưng ngày mai làm gì thì không ai trong công ty "biết" làm.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">02.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">4 nhân sự Gen Z dán mắt vào màn hình, thuộc lòng mọi prompt AI nhưng vẫn "chết đuối" vì không biết ráp nối thành một phễu bán hàng.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">03.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Lưu lại video "Trick AI" thứ 100 trên TikTok khi đang ăn vội hộp cơm nguội ngắt lúc 9h tối, nhưng không bao giờ thực hành.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">04.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Cổ đông 60 tuổi đẩy gọng kính, cau mày nhìn Dashboard số hóa như nhìn một sinh vật lạ: "Ngày xưa ghi sổ vẫn tốt mà".</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">05.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Tin nhắn "Khách hối báo giá" giật lên ngay khoảnh khắc bạn vừa nâng máy ảnh lên để bắt hoàng hôn đẹp.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">06.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Dòng tin nhắn vào Thứ 6 trong group chat TBS Team: "Tuần này hủy kèo cầu lông, chị kẹt xử lý hệ thống lỗi mất mấy ngày không xong, xin lỗi team".</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">07.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Chú mèo cưng cào cửa đòi ăn, nhưng bạn không thể đứng dậy vì cái Webhook kết nối dữ liệu khách hàng lại vừa gãy.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">08.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Bầu không khí nghẹt thở khi chuyên gia đưa tờ trình xin 1 Tỷ đồng Branding... và kiên quyết không cam kết doanh thu.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">09.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Ly cà phê đắng chát sáng Chủ Nhật. Hàng chục nhân viên chờ lệnh từ cấp trên, không một ai "đủ tầm" chia sẻ gánh nặng chiến lược.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 border border-gray-800 hover:border-[#D4AF37] transition-colors reveal">
+                    <span class="text-[#D4AF37] text-2xl mb-4 block font-serif italic">10.</span>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed">Ông chủ hãng xe nặn nụ cười lên YouTube làm nội dung chính trị trong vô vọng, che giấu sự thật căn nhà đang cắm ở ngân hàng.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <button onclick="triggerModal('Touchpoint 2.5: Sau 10 Khoảnh Khắc')" class="inline-block border border-gray-600 text-gray-400 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-[#1A1A1A] transition-colors">
+                    Tìm Cách Giải Thoát ✦
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE UGLY TRUTH - LONG FORM STORIES -->
+    <section id="the-ugly-truth" class="py-32 px-6 bg-white relative">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 text-[#1A1A1A]">Sự Rạn Nứt Từ Sâu Bên Trong</h2>
+                <p class="text-gray-500 text-lg font-light leading-relaxed">Thị trường luôn phô bày những bức tranh triệu đô hào nhoáng. Nhưng ẩn sâu dưới đó là sự kiệt quệ. Dưới đây là 6 sự thật tàn nhẫn mà tôi - và cả những Founder thành đạt khác - đã phải đối mặt.</p>
+                <div class="w-16 h-px bg-[#1A1A1A] mx-auto mt-12"></div>
+            </div>
+
+            <!-- Story 1 -->
+            <div class="mb-32 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">01. Cú lừa "Hình ảnh đẹp tự ra đơn"</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-snug">Sự bế tắc của 4 nhân sự Gen Z trước biển công cụ AI và lời đề xuất điên rồ 1 Tỷ.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">Đ</p>
+                    <p>Đó là câu chuyện tại doanh nghiệp Dược phẩm mà tôi điều hành. Tôi đã duyệt chi gần 200 triệu tiền mặt chỉ để xây website, thuê studio, book mẫu và thợ chụp xịn nhất. Tôi đinh ninh hình ảnh đẹp sẽ tự ra đơn. Nhưng sự thật: <strong class="text-[#1A1A1A]">Suốt 3 tháng ròng rã, doanh thu bằng 0.</strong></p>
+                    <p>Tôi có trong tay 4 nhân sự. Họ đều là những người trẻ Gen Z, rất nhanh nhạy và sớm đụng vào các công cụ AI. Nhưng bi kịch là, dù thuộc làu các câu lệnh prompt, họ vẫn "chết đuối" và mông lung hoàn toàn. Họ ngợp trong kỷ nguyên AI nhưng không có một lộ trình, không biết làm sao để ghép nối công cụ thành một cỗ máy ra tiền.</p>
+                    <p>Trong cơn hoảng loạn, chúng tôi thuê một chuyên gia Digital Marketing để dẫn dắt. Vị chuyên gia này đưa tờ trình xin thêm <strong class="text-[#1A1A1A]">1 TỶ ĐỒNG</strong> cho 3 tháng tiếp theo chỉ để "Làm Branding" và kiên quyết: <em>"Đừng kỳ vọng ra doanh thu"</em>.</p>
+                    <div class="p-8 bg-[#FAFAF9] border-l-4 border-[#1A1A1A] my-8 shadow-sm">
+                        <p class="font-serif italic text-xl text-[#1A1A1A]">Đó là cái bẫy của việc tiêu tiền mù quáng vào bề nổi, nhưng lại rỗng tuếch ở hệ thống chuyển đổi bên dưới.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="mb-32 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">02. Hội chứng Course Junkie</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-snug">9 Tháng kiên trì sưu tầm kiến thức... để đổi lấy sự hoang mang tột độ.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">T</p>
+                    <p>Chính bản thân tôi là một trường hợp điển hình. Trên Threads, TikTok, Facebook... bất cứ ai share khóa học bán kỹ năng, dạy AI, tôi đều "Save" và lưu trữ cẩn thận. Tôi cày cuốc học hỏi không ngừng nghỉ.</p>
+                    <p>Nhưng suốt 9 tháng kiên trì đó, tôi không thể hành động ra kết quả. Lý do rất đơn giản: Tôi không hiểu bức tranh tổng thể mà họ đang dạy. Kiến thức chắp vá khiến tôi không thể tự tay setup hệ thống. <strong class="text-[#1A1A1A]">Học kỹ năng lẻ tẻ không tạo ra tiền. Chỉ có HỆ THỐNG được thiết kế đồng bộ mới tạo ra tiền.</strong></p>
+                </div>
+            </div>
+
+            <!-- Story 3 -->
+            <div class="mb-32 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">03. Cái tôi của Chuyên gia</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-snug">Nỗi sợ "Mất linh hồn" và cái giá phải trả bằng sức khỏe.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">N</p>
+                    <p>Đó là câu chuyện chung của hầu hết các Master Coach, chuyên gia Sức khỏe, Làm đẹp, Giáo dục, F&B... Thậm chí cả những tay nghề IT cực kỳ cứng. Họ rất xem nhẹ sự đồng hành của AI Agents.</p>
+                    <p>Họ sợ AI làm mất đi "linh hồn thương hiệu", sợ khách hàng nghĩ mình công nghiệp. Để bảo vệ cái tôi đó, họ chấp nhận thức đến 2h sáng trả lời tin nhắn thủ công. Họ đánh đổi sức khỏe để làm những việc mà một con bot được đào tạo tử tế có thể làm tốt gấp 10 lần mà vẫn giữ nguyên 100% giọng văn cá nhân của họ.</p>
+                </div>
+            </div>
+
+            <!-- Story 4 (Updated) -->
+            <div class="mb-32 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">04. Bức tường kiêu hãnh tuổi 60</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-snug">Thành tựu chục năm Offline bị đóng băng trước sự càn quét của kỷ nguyên số.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">N</p>
+                    <p>Người chủ doanh nghiệp Dược điều hành cùng tôi, cùng các bác sĩ, dược sĩ cổ đông... họ đều đã thành công rực rỡ ở độ tuổi 50-60. Họ có tay nghề đỉnh cao, y đức thâm sâu và số tài sản đáng mơ ước trong thế giới truyền thống.</p>
+                    <p>Nhưng khi thị trường chuyển dịch sang Online, khối tài sản kinh nghiệm đó bỗng trở nên vô lực. Họ bị "bắt cóc" bởi những agency vẽ vời thuật ngữ mà họ không hiểu. Tiền cứ chi ra nhưng khách không tới. Cái tôi của những người đã từng đứng trên đỉnh vinh quang không cho phép họ thừa nhận mình đang tụt hậu.</p>
+                    <p>Họ không hiểu rằng AI Agent không phá bỏ những giá trị truyền thống của họ. AI là tấm khiên bảo vệ họ khỏi sự bóc lột của các chiến dịch marketing mù quáng, giúp họ quản trị tệp khách hàng khổng lồ mà không cần một đội ngũ sale phình to phức tạp.</p>
+                </div>
+            </div>
+
+            <!-- Story 5 (Updated) -->
+            <div class="mb-32 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">05. Sự đánh đổi & Giằng xé nội tâm</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-tight italic">Cảm giác tội lỗi khi dám bước ra khỏi "Phòng máy" của doanh nghiệp.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">T</p>
+                    <p>Có một nghịch lý tàn nhẫn thế này: Chúng ta cày cuốc để có tiền mua máy ảnh, để có thời gian đi đánh cầu lông, để có một buổi chiều nhàn nhã uống trà chơi với mèo. Nhưng khi có tiền rồi, sự tự do đó lại đi kèm với <strong class="text-[#1A1A1A]">sự giằng xé nội tâm và cảm giác tội lỗi.</strong></p>
+                    <p>Mỗi khi bạn nâng máy ảnh lên bắt cảnh hoàng hôn, đầu bạn lại nảy số: <em>"Giờ này nhân sự ở nhà có báo giá sai cho khách không? Ads hôm nay cắn tiền ra sao?"</em>. Mỗi khi xách vợt ra sân cùng anh em TBS TEAM, trong túi quần là chiếc điện thoại đang rung lên vì hệ thống rớt mạng. Bạn không dám tắt máy. Bạn sợ nếu mình buông tay, mọi thứ sẽ sụp đổ.</p>
+                    <p>Sự độc hành trên đỉnh cao là một loại chất độc êm ái. Xung quanh bạn toàn là nhân viên chờ đợi bạn ra quyết định. Không có ai đủ năng lực để gánh vác rủi ro. Bạn mắc kẹt giữa việc muốn buông bỏ để sống cho mình, và nỗi sợ hãi mất kiểm soát đối với đứa con tinh thần.</p>
+                </div>
+            </div>
+
+            <!-- Story 6: Doanh nghiệp Vận tải -->
+            <div class="mb-24 reveal">
+                <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">06. Chiếc bẫy dòng tiền SME</div>
+                <h3 class="text-3xl font-serif text-[#1A1A1A] mb-8 leading-snug">Bán 65% đế chế vận tải, cầm cố nhà cửa và sự vùng vẫy tuyệt vọng trên YouTube.</h3>
+                <div class="text-gray-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p class="dropcap">H</p>
+                    <p>Hãy nhìn vào sự thật đắng ngắt của một Hợp tác xã (SME) vận tải 20 năm tuổi. Trước dịch, họ kiêu hãnh sở hữu 100 chiếc xe dịch vụ. Sau Covid, khách hàng B2B ép điều kiện: Chỉ thuê xe đời mới từ 2021.</p>
+                    <p>Để giữ bát cơm cho 100 anh em tài xế, người chủ cắn răng <strong class="text-[#1A1A1A]">cầm cố chính căn nhà của mình</strong> cho ngân hàng để nâng cấp dàn xe. Nhưng nghiệt ngã thay, hợp đồng ký 3-5 năm nhưng dòng tiền thanh toán lại gối đầu... <strong class="text-[#1A1A1A]">mỗi 3 tháng mới trả 1 lần (lên tới 1.8 tỷ)</strong>.</p>
+                    <p>Chi phí vận hành, bảo dưỡng, lương tài xế là cố định mỗi tháng, nhưng dòng tiền thì bị "giam lỏng". Họ buộc phải bán tháo 65% lượng xe chỉ để sinh tồn.</p>
+                    <div class="p-8 bg-[#FAFAF9] border-l-4 border-[#1A1A1A] my-8 shadow-sm">
+                        <p class="font-serif italic text-xl text-[#1A1A1A]">Sự bế tắc đẩy người chủ đến một định hướng cảm tính đến xót xa: "Lên YouTube làm nội dung tri thức chính trị để... mong có người thuê xe".</p>
+                    </div>
+                    <p>Đó là sự hoảng loạn khi không kiểm soát được Data và Hệ thống. Khách B2B thuê xe dài hạn không chốt hợp đồng tỷ đồng qua một clip chém gió trên YouTube. Cái doanh nghiệp này cần là một hệ thống tự động phân tích công suất xe trống, một CRM quản trị đối tác B2B để xoay vòng vốn, chứ không phải đi làm YouTuber giải trí.</p>
+
+                    <div class="mt-16 text-center">
+                        <p class="font-serif text-2xl text-[#1A1A1A] mb-8">Thị trường đang mắc kẹt.<br>Và bạn cũng vậy, nếu không chịu thay đổi cuộc chơi.</p>
+                        <button onclick="triggerModal('Touchpoint 3: Nút Sau 6 Câu Chuyện Máu Nước Mắt')" class="charcoal-bg text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors shadow-2xl">
+                            Khởi Động Lại Hệ Thống ➤
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE PIVOT: THE ARCHITECT SOLUTION -->
+    <section class="py-32 px-6 charcoal-bg text-center border-y border-[#D4AF37]/30 reveal">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-serif mb-8 text-white leading-tight">
+                Thị trường ngoài kia đang ngợp trong rác công cụ.<br>
+                Tôi định vị mình là một <span class="text-[#D4AF37]">Kiến Trúc Sư Vận Hành.</span>
+            </h2>
+            <p class="text-gray-400 text-lg font-light leading-relaxed mb-12">
+                Trudie Academy không phải là nơi bán cho bạn vài khóa học kỹ năng lẻ tẻ để bạn tự bơi. Chúng tôi sinh ra để đánh thức sự tỉnh táo của bạn. Chúng tôi giải phẫu doanh nghiệp của bạn, tháo dỡ những trói buộc vô hình đang bóp nghẹt dòng tiền, và lắp ráp vào đó một hệ thống AI Agent đồng bộ — một bộ máy tự động hứng Lead, tự động nuôi dưỡng, và tự động chốt sale mà không đòi tăng lương.
+            </p>
+        </div>
+    </section>
+
+    <!-- ROI DATA CHART (Updated Context) -->
+    <section id="roi-data" class="py-32 px-6 bg-white reveal">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-gray-500 text-[10px] uppercase tracking-[0.4em] mb-4">Case Study: Cắt Cơn Đau Dòng Tiền</p>
+                <h2 class="text-3xl md:text-5xl font-serif mb-6 text-[#1A1A1A]">Bài Toán Tối Ưu Hóa Nguồn Vốn</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">Nhìn vào câu chuyện của doanh nghiệp Vận tải hay Dược phẩm. Khi dòng tiền bị giam, việc cố nhồi nhét nhân sự hay đập tiền chạy Branding chỉ đẩy doanh nghiệp đến bờ vực phá sản. Đây là cách AI giải phóng áp lực chi phí cố định.</p>
+            </div>
+            
+            <div class="bg-[#FAFAF9] p-8 md:p-12 border border-gray-100 shadow-sm rounded-sm">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                    <div>
+                        <h3 class="font-serif text-2xl text-[#1A1A1A]">Biểu Đồ Giải Phóng Dòng Tiền Âm</h3>
+                        <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest">Chi phí cố định vs. Lợi nhuận gộp</p>
+                    </div>
+                    <div class="text-left md:text-right">
+                        <div class="text-4xl font-serif text-[#1A1A1A]">-80%</div>
+                        <div class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Chi phí nhân sự & Rò rỉ Data</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="cashflowChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE BLUEPRINT GRID -->
+    <section id="blueprint" class="py-32 px-6 bg-[#FAFAF9] reveal">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl md:text-6xl font-serif leading-tight text-[#1A1A1A]">Lộ trình 4 bước <br><span class="italic text-gray-400">Dành riêng cho Elite</span></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-20">
+                <div class="bg-white border border-gray-200 p-12 hover:shadow-2xl transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-bl-[100px] -z-10 group-hover:scale-150 transition-transform"></div>
+                    <span class="text-[#D4AF37] font-serif italic text-5xl mb-6 block">01</span>
+                    <h4 class="text-2xl font-bold mb-4 font-serif text-[#1A1A1A]">Audit Tàn Nhẫn</h4>
+                    <p class="text-gray-600 font-light leading-relaxed">Mổ xẻ báo cáo tài chính và quy trình làm việc hiện tại. Lôi ra ánh sáng những khoản tiền đang bị đốt mù quáng vào các phần mềm rời rạc và nhân sự kém hiệu quả.</p>
+                </div>
+                <div class="bg-white border border-gray-200 p-12 hover:shadow-2xl transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#1A1A1A]/5 rounded-bl-[100px] -z-10 group-hover:scale-150 transition-transform"></div>
+                    <span class="text-[#1A1A1A] font-serif italic text-5xl mb-6 block">02</span>
+                    <h4 class="text-2xl font-bold mb-4 font-serif text-[#1A1A1A]">Thiết Kế Kiến Trúc Backend</h4>
+                    <p class="text-gray-600 font-light leading-relaxed">Xây dựng cơ sở dữ liệu tập trung. Đặt AI Agent vào đúng các yết hầu tốn thời gian nhất (Phân loại Data B2B, Onboarding, Tư vấn 24/7) để bảo vệ dòng máu doanh nghiệp.</p>
+                </div>
+                <div class="bg-white border border-gray-200 p-12 hover:shadow-2xl transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#1A1A1A]/5 rounded-bl-[100px] -z-10 group-hover:scale-150 transition-transform"></div>
+                    <span class="text-[#1A1A1A] font-serif italic text-5xl mb-6 block">03</span>
+                    <h4 class="text-2xl font-bold mb-4 font-serif text-[#1A1A1A]">Deployment & API Hooking</h4>
+                    <p class="text-gray-600 font-light leading-relaxed">Kết nối kỹ thuật. Biến Notion, CRM, Social Media thành một dòng chảy duy nhất không có độ trễ. AI sẽ hành xử, giao tiếp và suy nghĩ theo đúng bộ DNA của người Founder.</p>
+                </div>
+                <div class="bg-white border border-gray-200 p-12 hover:shadow-2xl transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-bl-[100px] -z-10 group-hover:scale-150 transition-transform"></div>
+                    <span class="text-[#D4AF37] font-serif italic text-5xl mb-6 block">04</span>
+                    <h4 class="text-2xl font-bold mb-4 font-serif text-[#1A1A1A]">Tối Ưu & Thu Hồi Vốn</h4>
+                    <p class="text-gray-600 font-light leading-relaxed">Khi rò rỉ được vá, chi phí cố định giảm, biên độ lợi nhuận sẽ tự động nở ra. Việc Scale doanh thu lên 2 Tỷ lúc này chỉ là thao tác vặn volume ngân sách Ads.</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="triggerModal('Touchpoint 4: Giữa Lộ Trình')" class="inline-block border border-[#1A1A1A] text-[#1A1A1A] px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#1A1A1A] hover:text-white transition-colors">
+                    Nhận Cấu Trúc Phễu Demo Kèm Báo Giá ✦
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & INVESTMENT -->
+    <section id="pricing" class="py-32 px-6 charcoal-bg reveal">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl md:text-7xl font-serif mb-6 text-[#D4AF37] italic">Mức Đầu Tư Đáng Giá Triệu Đô</h2>
+                <p class="text-gray-400 text-[10px] uppercase tracking-[0.4em]">Trang bị vũ khí để giành lại vị thế làm chủ</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-0 border border-gray-800 bg-[#1A1A1A] shadow-2xl">
+                <!-- Tier 1 -->
+                <div class="p-12 border-b md:border-b-0 md:border-r border-gray-800 flex flex-col items-center text-center">
+                    <h3 class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-8 font-black">Self-Study</h3>
+                    <div class="text-4xl font-serif mb-4 text-white">4.9M</div>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-10">Tự vận hành cơ bản</p>
+                    <ul class="text-gray-400 text-sm font-light space-y-4 mb-10 flex-1 text-left w-full border-t border-gray-800 pt-8">
+                        <li>✓ Toàn bộ Video Tư duy hệ thống</li>
+                        <li>✓ Template Notion Quản trị</li>
+                        <li>✓ Thư viện Prompts cho AI Agent</li>
+                    </ul>
+                    <button onclick="triggerModal('Gói 4.9M')" class="w-full py-4 border border-gray-700 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-all">
+                        Sở Hữu Bộ Quy Trình
+                    </button>
+                </div>
+                
+                <!-- Tier 2 -->
+                <div class="p-12 relative z-10 flex flex-col items-center text-center shadow-[0_0_50px_rgba(212,175,55,0.1)] scale-105 border-x border-[#D4AF37] bg-[#222]">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 gold-gradient text-white text-[9px] font-black uppercase tracking-[0.4em] px-8 py-2">Khuyên Dùng</div>
+                    <h3 class="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] mb-8 font-black">Mastermind Elite</h3>
+                    <div class="text-5xl font-serif mb-4 text-white">9.9M</div>
+                    <p class="text-[10px] text-[#D4AF37] opacity-80 uppercase tracking-[0.2em] mb-10">8 Tuần Đồng Hành</p>
+                    <ul class="text-gray-300 text-sm font-light space-y-4 mb-10 flex-1 text-left w-full border-t border-gray-700 pt-8">
+                        <li><span class="text-[#D4AF37]">✦</span> Bao gồm gói Self-Study</li>
+                        <li><span class="text-[#D4AF37]">✦</span> 8 Buổi Coaching trực tiếp 1:1</li>
+                        <li><span class="text-[#D4AF37]">✦</span> Trudie trực tiếp Audit hệ thống</li>
+                        <li><span class="text-[#D4AF37]">✦</span> Tham gia Cộng Đồng Elite Trả Phí</li>
+                    </ul>
+                    <button onclick="triggerModal('Gói 9.9M Mastermind')" class="w-full py-6 gold-gradient text-[#1A1A1A] text-[10px] font-black uppercase tracking-[0.3em] hover:brightness-110 transition-all shadow-xl">
+                        Tham Gia Mastermind
+                    </button>
+                </div>
+                
+                <!-- Tier 3 -->
+                <div class="p-12 flex flex-col items-center text-center">
+                    <h3 class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-8 font-black">Done-For-You</h3>
+                    <div class="text-4xl font-serif mb-4 text-white">25M+</div>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-10">Giao chìa khóa trao tay</p>
+                    <ul class="text-gray-400 text-sm font-light space-y-4 mb-10 flex-1 text-left w-full border-t border-gray-800 pt-8">
+                        <li>✓ Team TBS trực tiếp setup API</li>
+                        <li>✓ Custom AI Agent theo giọng điệu brand</li>
+                        <li>✓ Bàn giao phễu 2 Tỷ hoàn chỉnh</li>
+                        <li>✓ Support kỹ thuật 24/7</li>
+                    </ul>
+                    <button onclick="triggerModal('Gói 25M Done For You')" class="w-full py-4 border border-gray-700 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-all">
+                        Liên Hệ Đặt Lịch Setup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERSHIP STANDARDS (SCARCITY) -->
+    <section class="py-32 px-6 bg-[#D4AF37] text-center relative overflow-hidden reveal">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none select-none flex items-center justify-center font-serif text-[25vw] font-black text-[#1A1A1A]">TRUDIE</div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="text-4xl md:text-6xl font-serif mb-8 text-[#1A1A1A] italic font-bold">Nguyên Tắc Hợp Tác</h2>
+            <p class="text-[#1A1A1A] text-lg mb-12 font-medium max-w-2xl mx-auto">
+                Một hệ thống mạnh chỉ phát huy tác dụng khi người làm chủ dám đập bỏ tư duy cũ. Tôi không nhận khách hàng đại trà. TBS Team duy trì một màng lọc khắt khe để tìm kiếm những đối tác thực sự sẵn sàng tái cấu trúc toàn diện.
+            </p>
+            <button onclick="triggerModal('Touchpoint 5: Lời Cảnh Cáo Cuối Cùng')" class="charcoal-bg text-white px-16 py-8 text-xs font-black uppercase tracking-[0.3em] hover:scale-105 transition-transform shadow-2xl">
+                Kiểm Tra Độ Phù Hợp & Nhận Tài Liệu
+            </button>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 1: THE IRRESISTIBLE VALUE (TRIPWIRE HOOK) -->
+    <section class="py-32 px-6 bg-white border-t border-gray-200 reveal">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block border border-[#D4AF37] text-[#D4AF37] px-4 py-1 text-[10px] font-bold tracking-[0.3em] uppercase mb-6">
+                    Bí Mật Đằng Sau Hệ Thống
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 text-[#1A1A1A]">Tài Sản Hàng Trăm Triệu <br><span class="italic text-[#D4AF37]">Đang Bị Bỏ Quên</span></h2>
+                <p class="text-gray-600 text-lg font-light leading-relaxed mb-8">
+                    Những người bế tắc trong dòng tiền thường nghĩ họ cần một phép màu. Sự thật là, họ chỉ cần một lộ trình đúng. Tôi đã hệ thống hóa toàn bộ công thức giúp doanh nghiệp Dược và Vận tải lật ngược thế cờ thành một bộ tài liệu thực chiến.
+                </p>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <div class="text-[#D4AF37] text-2xl">✦</div>
+                        <div>
+                            <h4 class="font-bold text-[#1A1A1A] uppercase tracking-widest text-xs mb-1">Kiến Trúc Data Backend</h4>
+                            <p class="text-gray-500 text-sm font-light">Tuyệt chiêu kết nối nền tảng không cần biết code, bịt kín mọi lỗ hổng rớt khách.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="text-[#D4AF37] text-2xl">✦</div>
+                        <div>
+                            <h4 class="font-bold text-[#1A1A1A] uppercase tracking-widest text-xs mb-1">Bộ Prompt "Trấn Lột" AI</h4>
+                            <p class="text-gray-500 text-sm font-light">Ép AI Agent xử lý kịch bản sale sắc lẹm, chốt đơn thay bạn ngay cả lúc 2h sáng.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="text-[#D4AF37] text-2xl">✦</div>
+                        <div>
+                            <h4 class="font-bold text-[#1A1A1A] uppercase tracking-widest text-xs mb-1">Bảng Tính Dòng Tiền Âm/Dương</h4>
+                            <p class="text-gray-500 text-sm font-light">Nhìn thấu chi phí chìm, đo lường chính xác lợi nhuận gộp sau khi gắn hệ thống.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-[#FAFAF9] p-10 border border-[#D4AF37]/30 shadow-xl relative">
+                <div class="absolute -top-4 -right-4 bg-[#1A1A1A] text-[#D4AF37] text-[10px] font-black uppercase tracking-widest px-6 py-2 shadow-lg">Vũ Khí Hạng Nặng</div>
+                <p class="font-serif text-2xl text-[#1A1A1A] italic mb-6 leading-relaxed">
+                    "Nếu thuê một chuyên gia tư vấn, bạn sẽ mất không dưới 50 triệu chỉ để ngồi nghe những lý thuyết suông. Ở đây, tôi trao cho bạn bộ xương sống của cỗ máy."
+                </p>
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Giá trị thực tế:</span>
+                        <span class="text-sm font-bold line-through text-gray-400">50,000,000đ</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-8">
+                        <span class="text-xs uppercase tracking-widest text-[#1A1A1A] font-bold">Mức phí sở hữu trọn bộ Premium:</span>
+                        <span class="text-3xl font-serif text-[#D4AF37] font-bold">889,000đ</span>
+                    </div>
+                    <p class="text-[10px] text-gray-500 italic mb-4">* Ưu đãi đặc quyền này chỉ xuất hiện duy nhất ở trang tiếp theo sau khi bạn điền form nhận tài liệu hướng dẫn mở đầu.</p>
+                    <button onclick="triggerModal('Touchpoint 6: Nhận Bản Đồ Tripwire')" class="w-full charcoal-bg text-white py-5 text-xs font-black uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors shadow-lg">
+                        Mở Khóa Cơ Hội Này
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 2: THE FINAL CROSSROADS -->
+    <section class="py-32 px-6 charcoal-bg text-center relative overflow-hidden reveal border-t border-[#D4AF37]/20">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="text-4xl md:text-6xl font-serif mb-8 text-white italic leading-tight">Quyết Định Của Một Người Làm Chủ</h2>
+            <p class="text-gray-400 text-lg font-light leading-relaxed mb-12">
+                Giây phút này, bạn đang đứng ở một ngã rẽ. Hoặc là tiếp tục tắt trang web này, thức dậy vào sáng mai với sự hỗn loạn cũ, dòng tiền rỉ máu cũ và nỗi cô độc tột cùng. <br><br>
+                Hoặc là... đánh đổi một khoản tiền <strong class="text-[#D4AF37]">còn rẻ hơn một chầu cafe cuối tuần (chỉ 889k)</strong> để lấy lại sự kiểm soát toàn diện cho doanh nghiệp của bạn. Sự tự do của bạn đáng giá bao nhiêu? Hãy điền thông tin để bước qua cánh cửa này, và chuẩn bị đón nhận một sự thay đổi không thể chối từ.
+            </p>
+            <button onclick="triggerModal('Touchpoint 7: Ngã Rẽ Cuối Cùng')" class="gold-gradient text-[#1A1A1A] px-16 py-8 text-sm font-black uppercase tracking-[0.3em] hover:scale-105 transition-transform shadow-[0_0_50px_rgba(212,175,55,0.3)]">
+                Tôi Chọn Sự Tự Do ➤
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 px-6 bg-[#1A1A1A] text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="font-serif text-3xl tracking-[0.4em] mb-8 font-bold text-[#D4AF37]">TRUDIE</div>
+            
+            <div class="flex justify-center flex-wrap gap-6 md:gap-12 mb-12">
+                <a href="#" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors border border-gray-800 px-6 py-3 rounded-full hover:border-[#D4AF37]">Instagram Direct</a>
+                <a href="#" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors border border-gray-800 px-6 py-3 rounded-full hover:border-[#D4AF37]">Zalo Official</a>
+                <a href="#" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors border border-gray-800 px-6 py-3 rounded-full hover:border-[#D4AF37]">Cộng Đồng Elite (Paid)</a>
+                <a href="#" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors border border-gray-800 px-6 py-3 rounded-full hover:border-[#D4AF37]">Telegram Group (Free)</a>
+            </div>
+
+            <p class="text-[9px] text-gray-500 uppercase tracking-[0.3em]">© 2026 TRUDIE ACADEMY. THE OPERATION ARCHITECT. TBS TEAM.</p>
+        </div>
+    </footer>
+
+    <!-- THE MULTI-TOUCHPOINT MODAL (Tripwire Strategy) -->
+    <div id="leadModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 modal-overlay backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-[#FAFAF9] p-8 md:p-10 shadow-2xl rounded-sm border border-[#1A1A1A]">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-[#1A1A1A] text-2xl leading-none">&times;</button>
+            
+            <div id="modalContent">
+                <div class="text-center mb-6">
+                    <div class="text-3xl text-[#1A1A1A] mb-2">✦</div>
+                    <h3 id="modalTitle" class="text-2xl font-serif text-[#1A1A1A] mb-2 uppercase tracking-tight font-bold">Tải Guideline Định Hình Phễu Tự Động</h3>
+                    <p id="modalDesc" class="text-xs text-gray-500 font-light italic">Điền thông tin để tôi gửi thẳng bộ Template & Ebook (Trị giá thực tế: 1,289,000đ) vào email của bạn ngay bây giờ.</p>
+                </div>
+
+                <form id="leadForm" onsubmit="submitForm(event)" class="space-y-4">
+                    <input type="hidden" id="touchpointSource" name="touchpointSource" value="">
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-600 mb-1 block font-bold">Họ và tên</label>
+                            <input required type="text" name="name" class="w-full bg-white border border-gray-300 px-3 py-3 focus:border-[#1A1A1A] outline-none text-sm text-[#1A1A1A] shadow-inner" placeholder="Tên của bạn">
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-600 mb-1 block font-bold">Số điện thoại / Zalo</label>
+                            <input required type="tel" name="phone" class="w-full bg-white border border-gray-300 px-3 py-3 focus:border-[#1A1A1A] outline-none text-sm text-[#1A1A1A] shadow-inner" placeholder="090x xxx xxx">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[9px] uppercase tracking-widest text-gray-600 mb-1 block font-bold">Email nhận tài liệu (Mailchimp)</label>
+                        <input required type="email" name="email" class="w-full bg-white border border-gray-300 px-3 py-3 focus:border-[#1A1A1A] outline-none text-sm text-[#1A1A1A] shadow-inner" placeholder="ceo@doanhnghiep.com">
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-600 mb-1 block font-bold">Lĩnh vực hoạt động</label>
+                            <select required name="industry" class="w-full bg-white border border-gray-300 px-3 py-3 focus:border-[#1A1A1A] outline-none text-xs text-[#1A1A1A] cursor-pointer shadow-inner">
+                                <option value="" disabled selected>Chọn...</option>
+                                <option value="Dược/Y tế">Dược / Y tế / Sức khỏe</option>
+                                <option value="Coach/Đào tạo">Coach / Đào tạo</option>
+                                <option value="F&B/Làm đẹp">F&B / Làm đẹp / Spa</option>
+                                <option value="Vận tải/Logistic">Vận tải / Logistic</option>
+                                <option value="Khác">Lĩnh vực khác...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-600 mb-1 block font-bold">Quy mô nhân sự</label>
+                            <select required name="team_size" class="w-full bg-white border border-gray-300 px-3 py-3 focus:border-[#1A1A1A] outline-none text-xs text-[#1A1A1A] cursor-pointer shadow-inner">
+                                <option value="" disabled selected>Chọn...</option>
+                                <option value="1">1 (Solopreneur)</option>
+                                <option value="2-10">2 - 10 người</option>
+                                <option value="11-20">11 - 20 người</option>
+                                <option value="21-50">21 - 50 người</option>
+                                <option value="50+">Trên 50 người</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full charcoal-bg text-white py-4 text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-800 transition-all mt-2 shadow-lg">
+                        Gửi Bộ Cẩm Nang Cho Tôi
+                    </button>
+                    <p class="text-[9px] text-center text-gray-400 uppercase tracking-widest mt-2">Check email của bạn trong 5 phút nữa.</p>
+                </form>
+            </div>
+
+            <div id="successContent" class="hidden text-center py-10">
+                <div class="text-5xl text-[#1A1A1A] mb-4">✓</div>
+                <h3 class="text-2xl font-serif mb-2 text-[#1A1A1A]">Hệ thống đang gửi Email...</h3>
+                <p class="text-sm text-gray-600 leading-relaxed font-light mb-6">
+                    Hệ thống đang chuyển hướng bạn tới trang nhận ưu đãi đặc biệt. Xin vui lòng đợi trong giây lát...
+                </p>
+                <div class="w-6 h-6 border-2 border-gray-300 border-t-[#1A1A1A] rounded-full animate-spin mx-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        const modal = document.getElementById('leadModal');
+        const touchpointInput = document.getElementById('touchpointSource');
+        const leadForm = document.getElementById('leadForm');
+        const modalContent = document.getElementById('modalContent');
+        const successContent = document.getElementById('successContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        
+        let hasTriggeredScrollModal = false;
+        let exitModalTriggered = false;
+
+        function triggerModal(source) {
+            touchpointInput.value = source;
+            
+            if(source.includes('Pricing') || source.includes('Gói')) {
+                modalTitle.textContent = "Nhận Mẫu Cấu Trúc Phễu Demo";
+                modalDesc.textContent = "Chưa sẵn sàng đầu tư? Hãy xem trước cách chúng tôi thiết kế kiến trúc bằng cách tải file PDF Guideline bên dưới.";
+            } else if (source.includes('Exit')) {
+                modalTitle.textContent = "Khoan đã! Nhận quà trước khi đóng";
+                modalDesc.textContent = "Tài liệu này trị giá 1,289,000đ đang được tặng miễn phí. Để lại Email, tôi sẽ gửi ngay.";
+            } else {
+                modalTitle.textContent = "Tải Guideline Định Hình Phễu Tự Động";
+                modalDesc.textContent = "Điền thông tin để tôi gửi thẳng bộ Template & Ebook vào email của bạn ngay bây giờ.";
+            }
+
+            modalContent.classList.remove('hidden');
+            successContent.classList.add('hidden');
+            leadForm.reset();
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const formData = new FormData(leadForm);
+            
+            const submitBtn = leadForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "ĐANG XỬ LÝ...";
+            submitBtn.disabled = true;
+
+            try {
+                // Tích hợp Formspree: xeerbvlp
+                const response = await fetch('https://formspree.io/f/xeerbvlp', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                modalContent.classList.add('hidden');
+                successContent.classList.remove('hidden');
+                
+                // Tripwire Strategy: Chuyển hướng sang trang Thank You (Bán Upsell 889k)
+                // Bỏ comment dòng dưới khi Trudie đã có link trang Thank You
+                /* setTimeout(() => {
+                    window.location.href = "https://trudie.academy/thank-you";
+                }, 3000); */
+
+            } catch (error) {
+                console.error("Lỗi:", error);
+                alert("Lỗi kết nối.");
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Tăng delay Modal tự động xuất hiện lên 45 giây
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasTriggeredScrollModal) {
+                    setTimeout(() => {
+                        if(!hasTriggeredScrollModal && modal.classList.contains('hidden')) {
+                            triggerModal('Touchpoint 3: Time on Page (45s)');
+                            hasTriggeredScrollModal = true;
+                        }
+                    }, 45000); // 45,000 milliseconds = 45s
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        scrollObserver.observe(document.getElementById('the-ugly-truth'));
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitModalTriggered) {
+                triggerModal('Touchpoint 5: Exit Intent');
+                exitModalTriggered = true;
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md', 'py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('shadow-md', 'py-4');
+                nav.classList.add('py-6');
+            }
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Chart.js Setup (Updated to reflect actual conversion vs vanity metrics)
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('cashflowChart').getContext('2d');
+            
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#6B7280';
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4 (Áp dụng AI)'],
+                    datasets: [
+                        {
+                            label: 'Chi phí Marketing bề nổi (Website, Hình ảnh) - Không ra đơn',
+                            data: [150, 180, 200, 210], 
+                            borderColor: '#DC2626', 
+                            backgroundColor: 'rgba(220, 38, 38, 0.05)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            tension: 0.1,
+                            fill: true
+                        },
+                        {
+                            label: 'Doanh thu ròng đổ về tài khoản (AI Automation)',
+                            data: [0, 0, 0, 350], 
+                            borderColor: '#1A1A1A',
+                            backgroundColor: 'rgba(26, 26, 26, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: true,
+                            pointBackgroundColor: '#1A1A1A',
+                            pointBorderColor: '#FAFAF9',
+                            pointBorderWidth: 2,
+                            pointRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, boxWidth: 8 } },
+                        tooltip: {
+                            backgroundColor: '#1A1A1A',
+                            titleFont: { size: 13, family: "'Inter', sans-serif" },
+                            bodyFont: { size: 13, family: "'Inter', sans-serif" },
+                            padding: 12,
+                            borderColor: '#D4AF37',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)', drawBorder: false },
+                            ticks: { callback: function(value) { return value + ' Tr'; } }
+                        },
+                        x: { grid: { display: false, drawBorder: false } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
