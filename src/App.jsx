@@ -9,7 +9,7 @@ import {
 
 import imgBanner from './assets/images/banner.jpg';
 import imgKhang from './assets/images/khang.jpg';
-// import imgTruc from './assets/images/truc.jpg';
+import imgTruc from './assets/images/truc.jpg';
 
 /* --- CUSTOM HOOK & COMPONENT FOR SCROLL ANIMATIONS --- */
 const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', threshold = 0.1 }) => {
@@ -344,7 +344,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
             <div className="group md:mt-16">
               <div className="aspect-[3/4] overflow-hidden mb-6 md:mb-8 border border-[#0C1838]/10 relative bg-[#E5E0D8]">
                 <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop" 
+                  src={imgTruc}
                   alt="Trudie - CEO" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
                 />
