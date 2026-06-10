@@ -11,6 +11,14 @@ import imgBanner from './assets/images/banner.jpg';
 import imgKhang from './assets/images/khang.jpg';
 import imgTruc from './assets/images/truc.jpg';
 
+// Import 6 ảnh luồng Agent mới
+import imgAgent1 from './assets/images/z7922288023222_4faae6d840508cccf5a5c1ef2c275755.jpg'; // 01. Insight Miner
+import imgAgent2 from './assets/images/z7922288029404_3c44ed4fd39f13d1a4ae932129f0ddd3.jpg'; // 02. The Collector
+import imgAgent3 from './assets/images/z7922288029724_f3b236dc8a225d208ad2d2fbc3c0f3bf.jpg'; // 03. The Profiler
+import imgAgent4 from './assets/images/z7922288039983_b8dce61486f51b2653efe643f349c82a.jpg'; // 04. The Nurturer
+import imgAgent5 from './assets/images/z7922288049661_060d63befe1a63f5ba476d952e96eed8.jpg'; // 05. The Closer
+import imgAgent6 from './assets/images/z7922288053418_dafe9683e95f0c30a5ebc1d9be97b4ae.jpg'; // 06. Handoff Dossier
+
 /* --- CUSTOM HOOK & COMPONENT FOR SCROLL ANIMATIONS --- */
 const Reveal = ({ children, className = '', delay = 0, type = 'fade-up', threshold = 0.1 }) => {
   const ref = useRef(null);
@@ -249,6 +257,7 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
       </section>
 
       {/* 2. Triết lý Vận Hành */}
+      {/* ... (Các phần mã khác không thay đổi) */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           <Reveal type="fade-right">
@@ -372,7 +381,8 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
           <Reveal type="fade-up" delay={0}>
             <div className="group cursor-pointer border border-[#0C1838]/10 p-6 md:p-8 hover:border-[#C5A059] transition-all duration-300 bg-white hover:-translate-y-2 hover:shadow-xl h-full flex flex-col" onClick={() => setActiveModal('core')}>
               <div className="mb-6"><Layers className="text-[#0C1838]/30 w-8 h-8 group-hover:text-[#C5A059] transition-colors duration-300" /></div>
-              <h3 className="text-xl font-serif font-medium text-[#0C1838] mb-3 group-hover:text-[#C5A059] transition-colors">6 Luồng AI Core</h3>
+              {/* Đã cập nhật dòng bên dưới thành 6 luồng Agent Sale/Marketing */}
+              <h3 className="text-xl font-serif font-medium text-[#0C1838] mb-3 group-hover:text-[#C5A059] transition-colors">6 luồng Agent Sale/Marketing</h3>
               <p className="text-[#0C1838]/60 text-sm leading-relaxed mb-6 font-light flex-grow">
                 Khung xương sống tự động thu thập dữ liệu, phân loại độ nóng của Lead và nuôi dưỡng đa kênh hoàn toàn tự động.
               </p>
@@ -484,17 +494,11 @@ const AboutPage = ({ navigateTo, setActiveModal }) => {
 const SolutionModal = ({ modalType, closeModal }) => {
   const content = {
     core: {
-      title: "6 Luồng AI Core",
+      // Đã cập nhật Title và truyền mảng images vào đây thay vì nội dung items text
+      title: "6 luồng Agent Sale/Marketing",
       subtitle: "Hệ thống tự động hoá tối thiểu",
       desc: "Nền tảng vận hành dành cho doanh nghiệp muốn tối ưu hoá dòng tiền và ngừng lãng phí tài nguyên nhân sự.",
-      items: [
-        { title: "Data Scraper Agent", text: "Rà quét, thu thập dữ liệu khách hàng tiềm năng trên các nền tảng mạng xã hội và web đối thủ." },
-        { title: "Lead Scoring Matrix", text: "AI chấm điểm độ 'ấm/nóng' của khách hàng dựa trên hành vi để báo cho Sale vào việc." },
-        { title: "Omnichannel Nurturing", text: "Tự động bám đuổi qua Zalo OA, Email, SMS theo đúng hành trình khách hàng." },
-        { title: "Smart Appointment Setter", text: "Voicebot/Chatbot qualify khách và book lịch hẹn trực tiếp vào Google Calendar." },
-        { title: "Low-Ticket Closer", text: "Hệ thống chốt đơn sản phẩm mồi không cần sự can thiệp của con người." },
-        { title: "Automated CRM", text: "Tạo hồ sơ, xuất hoá đơn và gửi khảo sát/upsell tự động sau dịch vụ." }
-      ]
+      images: [imgAgent1, imgAgent2, imgAgent3, imgAgent4, imgAgent5, imgAgent6]
     },
     custom: {
       title: "15+ AI Custom",
@@ -542,15 +546,27 @@ const SolutionModal = ({ modalType, closeModal }) => {
           <p className="text-[#0C1838]/80 text-sm md:text-base mb-8 md:mb-10 font-serif italic border-l-2 border-[#C5A059] pl-4 md:pl-6">
             {data.desc}
           </p>
-          <div className="grid sm:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-8 md:gap-y-10">
-            {data.items.map((item, idx) => (
-              <div key={idx} className="relative group">
-                <div className="text-[10px] font-bold text-[#C5A059] mb-2 font-mono transition-transform group-hover:translate-x-1 inline-block">{(idx + 1).toString().padStart(2, '0')} —</div>
-                <h4 className="text-[#0C1838] font-medium mb-2 font-serif text-base md:text-lg">{item.title}</h4>
-                <p className="text-[#0C1838]/60 text-xs md:text-sm leading-relaxed font-light">{item.text}</p>
-              </div>
-            ))}
-          </div>
+          
+          {/* Cập nhật điều kiện Render: Nếu có images thì hiển thị Ảnh dạng lưới */}
+          {data.images ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.images.map((imgSrc, idx) => (
+                <div key={idx} className="border border-[#0C1838]/10 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <img src={imgSrc} alt={`Agent Workflow ${idx + 1}`} className="w-full h-auto object-cover" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-8 md:gap-y-10">
+              {data.items.map((item, idx) => (
+                <div key={idx} className="relative group">
+                  <div className="text-[10px] font-bold text-[#C5A059] mb-2 font-mono transition-transform group-hover:translate-x-1 inline-block">{(idx + 1).toString().padStart(2, '0')} —</div>
+                  <h4 className="text-[#0C1838] font-medium mb-2 font-serif text-base md:text-lg">{item.title}</h4>
+                  <p className="text-[#0C1838]/60 text-xs md:text-sm leading-relaxed font-light">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -559,7 +575,7 @@ const SolutionModal = ({ modalType, closeModal }) => {
 
 /* --- EXPERIENCE PAGE --- */
 const ExperiencePage = () => {
-
+// ... Code trang kinh nghiệm giữ nguyên không đổi
   return (
     <div className="animate-in fade-in duration-1000 max-w-7xl mx-auto px-6 lg:px-8">
       
